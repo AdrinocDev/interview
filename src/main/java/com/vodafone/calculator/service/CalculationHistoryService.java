@@ -9,8 +9,11 @@ import java.util.List;
 
 @Service
 public class CalculationHistoryService {
+  private List<CalculationHistoryResponse> calculationHistoryList;
 
-  List<CalculationHistoryResponse> calculationHistoryList = new ArrayList<>();
+  CalculationHistoryService() {
+    calculationHistoryList = new ArrayList<>();
+  }
 
   public void addToHistory(CalculateResponse calculation) {
     calculationHistoryList.add(
@@ -21,7 +24,7 @@ public class CalculationHistoryService {
             .build());
   }
 
-  public List<CalculationHistoryResponse> getCalculations(int order){
-    return calculationHistoryList.subList(0,order);
+  public List<CalculationHistoryResponse> getCalculations(int order) {
+    return calculationHistoryList.subList(0, order);
   }
 }
