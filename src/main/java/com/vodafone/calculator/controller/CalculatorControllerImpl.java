@@ -6,7 +6,7 @@ import com.vodafone.calculator.service.CalculatorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -27,22 +27,39 @@ public class CalculatorControllerImpl implements CalculatorApi {
   }
 
   @Override
-  public ResponseEntity<CalculateSortResponse> calculateSort(CalculateSortRequest request) {;
-    return ResponseEntity.status(HttpStatus.OK).body(calculatorService.calculateMissingNumberWithSort(request.getList(), request.getSort()));
+  public ResponseEntity<CalculateSortResponse> calculateSort(CalculateSortRequest request) {
+    ;
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(
+            calculatorService.calculateMissingNumberWithSort(request.getList(), request.getSort()));
   }
 
   @Override
   public ResponseEntity<CalculateRandomResponse> calculateRandom(CalculateRandomRequest request) {
-    return ResponseEntity.status(HttpStatus.OK).body(calculatorService.calculateMissingNumberInRandomList(request.getMaxValue()));
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(calculatorService.calculateMissingNumberInRandomList(request.getMaxValue()));
   }
 
   @Override
-  public ResponseEntity<CalculateFibonacciResponse> calculateFibonacci(CalculateFibonacciRequest request) {
-    return ResponseEntity.status(HttpStatus.OK).body(calculatorService.calculateFibonacciList(request.getValue()));
+  public ResponseEntity<CalculateFibonacciResponse> calculateFibonacci(
+      CalculateFibonacciRequest request) {
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(calculatorService.calculateFibonacciList(request.getValue()));
   }
 
   @Override
-  public ResponseEntity<List<CalculationHistoryResponse>> missingNumbers(CalculationHistoryRequest request) {
-    return ResponseEntity.status(HttpStatus.OK).body(historyService.getCalculations(request.getLastCalculations()));
+  /**
+   * List the last N calculations made in the calculate method
+   *
+   * <p>If the order in the request is greater than the number of calculations at the time, server
+   * will throw an exception.
+   *
+   * @param CalculationHistoryRequest
+   * @return List<CalculationHistoryResponse>
+   */
+  public ResponseEntity<List<CalculationHistoryResponse>> missingNumbers(
+      CalculationHistoryRequest request) {
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(historyService.getCalculations(request.getLastCalculations()));
   }
 }
