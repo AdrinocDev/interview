@@ -9,5 +9,7 @@ public class UrlConstants {
 
     public static final String CALCULATE_FIBONACCI = API_V1 +  "/calculate_fibonacci";
 
+    public static final String MISSING_NUMBERS = API_V1 +  "/missing_numbers";
+
 
 }

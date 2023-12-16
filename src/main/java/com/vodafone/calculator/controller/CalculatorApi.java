@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 import static com.vodafone.calculator.utils.UrlConstants.*;
 
 public interface CalculatorApi {
@@ -22,4 +24,7 @@ public interface CalculatorApi {
 
     @RequestMapping(value = CALCULATE_FIBONACCI, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     ResponseEntity<CalculateFibonacciResponse> calculateFibonacci(@RequestBody @Valid final CalculateFibonacciRequest calculateFibonacciRequest);
+
+    @RequestMapping(value = MISSING_NUMBERS, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    ResponseEntity<List<CalculationHistoryResponse>> missingNumbers(@RequestBody @Valid final CalculationHistoryRequest calculationHistoryRequest);
 }

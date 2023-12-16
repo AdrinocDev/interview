@@ -79,13 +79,15 @@ public class CalculatorService {
   private List<Integer> generateFibonacciList(int value) {
     List<Integer> fibonacciList = new ArrayList<>();
     int num1 = 0, num2 = 1;
-
-    for (int i = 0; i < value; i++) {
+    boolean fibNumberFound = false;
+    while(!fibNumberFound && value >= num1){ //TODO if the sequence can´t be greater than the value, use num2 instead of num1
       int num3 = num1 + num2;
       num1 = num2;
       num2 = num3;
       fibonacciList.add(num1);
+      fibNumberFound = fibonacciList.contains(value);
     }
+
     randomizerList(fibonacciList);
     return fibonacciList;
   }

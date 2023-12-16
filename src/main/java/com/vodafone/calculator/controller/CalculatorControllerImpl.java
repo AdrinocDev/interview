@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class CalculatorControllerImpl implements CalculatorApi {
@@ -39,8 +41,8 @@ public class CalculatorControllerImpl implements CalculatorApi {
     return ResponseEntity.status(HttpStatus.OK).body(calculatorService.calculateFibonacciList(request.getValue()));
   }
 
-//  @GetMapping("/missing_numbers")
-//  public List<CalculationResult> getMissingNumbers(@RequestParam int lastCalculations) {
-//    return historyService.getLastCalculations(lastCalculations);
-//  }
+  @Override
+  public ResponseEntity<List<CalculationHistoryResponse>> missingNumbers(CalculationHistoryRequest request) {
+    return ResponseEntity.status(HttpStatus.OK).body(historyService.getCalculations(request.getLastCalculations()));
+  }
 }

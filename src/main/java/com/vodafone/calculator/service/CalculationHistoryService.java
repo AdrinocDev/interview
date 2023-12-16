@@ -20,4 +20,8 @@ public class CalculationHistoryService {
             .list(calculation.getList())
             .build());
   }
+
+  public List<CalculationHistoryResponse> getCalculations(int order){
+    return calculationHistoryList.subList(0,order);
+  }
 }
